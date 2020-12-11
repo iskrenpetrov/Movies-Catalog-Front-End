@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Movies from './Movies';
+import Menu from "./Menu";
 
 
 class Category extends React.Component{
@@ -8,7 +9,7 @@ class Category extends React.Component{
         category: {},
     }
     componentDidMount(){
-        const url = `http://localhost:8080/${this.props.match ? this.props.match.params.id : this.props.computedMatch.params.id}`;
+        const url = `http://localhost:8080/categories/${this.props.match ? this.props.match.params.id : this.props.computedMatch.params.id}`;
         console.log(url);
         axios.get(url)
             .then(response=>{
@@ -17,7 +18,7 @@ class Category extends React.Component{
             .catch(error=>{console.log(error)})
     }
     componentDidUpdate(){
-        const url = `http://localhost:8080/${this.props.match ? this.props.match.params.id : this.props.computedMatch.params.id}`;
+        const url = `http://localhost:8080/categories/${this.props.match ? this.props.match.params.id : this.props.computedMatch.params.id}`;
         console.log(url);
         axios.get(url)
             .then(response=>{
@@ -29,6 +30,9 @@ class Category extends React.Component{
         let id = this.props.match.id;
         return (
             <div>
+                <div alt="menu">
+                    <Menu />
+                </div>
                 <h1>ID: {this.state.category.id}</h1>
                 <h1>Name: {this.state.category.name}</h1>
             </div>
